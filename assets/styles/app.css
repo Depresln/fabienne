@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@source "../../templates";
+@source "../**/*.js";
+
+@font-face {
+  font-family: "Florist";
+  src: url("./fonts/Florist.otf") format("opentype");
+  font-display: swap;
+}
+
+@theme {
+  --color-flower-50: #f4f9fc;
+  --color-flower-100: #e7f2f8;
+  --color-flower-200: #cfe5f1;
+  --color-flower-300: #abd1e5;
+  --color-flower-400: #7bb6d3;
+  --color-flower-500: #5299bd;
+  --color-flower-600: #397c9f;
+  --color-flower-700: #306581;
+  --color-flower-800: #2d566b;
+  --color-flower-900: #294859;
+  --color-ink: #172a33;
+  --font-display: "Florist", Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-white font-sans text-ink antialiased;
+  }
+
+  button,
+  a {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flower-600;
+  }
+}
+
+@layer components {
+  .button-primary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-lg bg-flower-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-flower-800;
+  }
+
+  .button-secondary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-lg border border-flower-300 bg-white px-5 py-2.5 text-sm font-semibold text-flower-800 transition-colors hover:bg-flower-50;
+  }
+
+  .button-danger {
+    @apply inline-flex min-h-11 items-center justify-center rounded-lg bg-red-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-800;
+  }
+
+  .field-label {
+    @apply mb-2 block text-sm font-semibold text-slate-700;
+  }
+
+  .field-control {
+    @apply block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-flower-600 focus:ring-2 focus:ring-flower-100;
+  }
+
+  .field-errors {
+    @apply mt-2 text-sm text-red-700;
+  }
+
+  .pagination {
+    @apply flex flex-wrap items-center justify-center gap-2;
+  }
+
+  .pagination a,
+  .pagination span {
+    @apply flex min-h-10 min-w-10 items-center justify-center rounded-lg border border-flower-200 px-3 text-sm font-semibold text-flower-800 transition-colors;
+  }
+
+  .pagination a:hover {
+    @apply border-flower-700 bg-flower-50;
+  }
+
+  .pagination .active span,
+  .pagination .current {
+    @apply border-flower-700 bg-flower-700 text-white;
+  }
+
+  .pagination .disabled span {
+    @apply cursor-not-allowed border-slate-200 text-slate-400;
+  }
+}

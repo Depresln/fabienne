@@ -1,0 +1,12 @@
+<footer class="border-t border-flower-100 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-6 text-sm lg:px-8">
+        <div>
+            {% if app.user %}
+                <a href="{{ path('logout') }}" class="font-semibold text-flower-800 hover:text-flower-600">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('login') }}" class="font-semibold text-flower-800 hover:text-flower-600">Connexion</a>
+            {% endif %}
+        </div>
+        <p class="text-xs text-slate-500">Réalisé par Nicolas Depresles</p>
+    </div>
+</footer>

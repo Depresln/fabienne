@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l’accueil — Fabienne Depresles{% endblock %}
+
+{% block body %}
+    <section class="min-h-[calc(100vh-5rem)] bg-flower-50 px-5 py-12 lg:px-8 lg:py-16">
+        <div class="mx-auto max-w-3xl rounded-xl border border-flower-200 bg-white p-6 sm:p-10">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-flower-700">Administration</p>
+            <h1 class="mt-2 font-display text-5xl text-flower-900 sm:text-6xl">Message d’accueil</h1>
+            <p class="mt-3 text-slate-600">Ce texte apparaît dans la section « Ateliers » de la page d’accueil.</p>
+
+            {{ form_start(content_form, {'attr': {'class': 'mt-8 space-y-6'}}) }}
+                <div>
+                    {{ form_label(content_form.text, null, {'label_attr': {'class': 'field-label'}}) }}
+                    {{ form_widget(content_form.text, {'attr': {'class': 'field-control min-h-72', 'placeholder': 'Votre message d’accueil…'}}) }}
+                    <div class="field-errors">{{ form_errors(content_form.text) }}</div>
+                </div>
+                {{ form_widget(content_form.save, {'attr': {'class': 'button-primary'}}) }}
+            {{ form_end(content_form) }}
+
+            <div class="mt-8 border-t border-flower-100 pt-6"><a href="{{ path('home') }}#ateliers" class="button-secondary">Retour à l’accueil</a></div>
+        </div>
+    </section>
+{% endblock %}

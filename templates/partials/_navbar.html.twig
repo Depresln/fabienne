@@ -1,0 +1,22 @@
+<header class="sticky top-0 z-40 border-b border-flower-100 bg-white/95 backdrop-blur-sm">
+    <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between px-5 py-4 lg:px-8" aria-label="Navigation principale">
+        <a class="font-display text-3xl leading-none text-flower-800 sm:text-4xl" href="{{ path('home') }}">Fabienne Depresles</a>
+        <button type="button" data-menu-toggle class="grid size-11 place-items-center rounded-lg border border-flower-200 text-flower-800 md:hidden" aria-controls="main-menu" aria-expanded="false">
+            <span class="sr-only">Ouvrir le menu</span>
+            <svg viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <div id="main-menu" data-menu class="hidden w-full items-center gap-2 pt-4 md:flex md:w-auto md:pt-0">
+            <a class="block rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-flower-50 hover:text-flower-800" href="{{ path('home') }}#ateliers">Ateliers</a>
+            <a class="block rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-flower-50 hover:text-flower-800" href="{{ path('gallery') }}">Galerie</a>
+            {% if app.user %}
+                {% set pendingComments = pendingComments|default(0) %}
+                <a class="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-flower-50 hover:text-flower-800" href="{{ path('admin_comments') }}">
+                    Commentaires
+                    {% if pendingComments > 0 %}<span class="inline-flex min-w-5 items-center justify-center rounded-full bg-red-600 px-1.5 py-0.5 text-xs font-bold text-white" aria-label="{{ pendingComments }} commentaire{{ pendingComments > 1 ? 's' : '' }} à valider">{{ pendingComments }}</span>{% endif %}
+                </a>
+                <a class="block rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-flower-50 hover:text-flower-800" href="{{ path('publish') }}">Publier</a>
+                <a class="block rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-flower-50 hover:text-flower-800" href="{{ path('logout') }}">Déconnexion</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>

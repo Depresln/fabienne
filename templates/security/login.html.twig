@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion — Fabienne Depresles{% endblock %}
+
+{% block body %}
+    <section class="grid min-h-[calc(100vh-5rem)] bg-flower-50 px-5 py-12 lg:px-8">
+        <div class="m-auto w-full max-w-md rounded-xl border border-flower-200 bg-white p-7 sm:p-10">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-flower-700">Espace privé</p>
+            <h1 class="mt-2 font-display text-5xl text-flower-900">Connexion</h1>
+
+            {% if error %}<div class="mt-6 border-l-4 border-red-700 bg-red-50 p-4 text-sm text-red-900" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>{% endif %}
+            {% if app.user %}<div class="mt-6 bg-flower-50 p-4 text-sm text-flower-900">Connecté en tant que {{ app.user.userIdentifier }}. <a class="font-bold underline" href="{{ path('logout') }}">Se déconnecter</a></div>{% endif %}
+
+            <form method="post" class="mt-8 space-y-5">
+                <div>
+                    <label for="inputUsername" class="field-label">Nom d'utilisateur</label>
+                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="field-control" autocomplete="username" required autofocus>
+                </div>
+                <div>
+                    <label for="inputPassword" class="field-label">Mot de passe</label>
+                    <input type="password" name="password" id="inputPassword" class="field-control" autocomplete="current-password" required>
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <button class="button-primary w-full" type="submit">Se connecter</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
