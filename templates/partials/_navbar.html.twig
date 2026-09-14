@@ -15,6 +15,7 @@
                     {% if pendingComments > 0 %}<span class="inline-flex min-w-5 items-center justify-center rounded-full bg-red-600 px-1.5 py-0.5 text-xs font-bold text-white" aria-label="{{ pendingComments }} commentaire{{ pendingComments > 1 ? 's' : '' }} à valider">{{ pendingComments }}</span>{% endif %}
                 </a>
                 <a class="block rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-flower-50 hover:text-flower-800" href="{{ path('publish') }}">Publier</a>
+                <a class="block rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-flower-50 hover:text-flower-800" href="{{ path('admin_import_uploads') }}">Importer les photos</a>
                 <a class="block rounded-lg px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-flower-50 hover:text-flower-800" href="{{ path('logout') }}">Déconnexion</a>
             {% endif %}
         </div>
