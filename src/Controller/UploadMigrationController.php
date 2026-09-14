@@ -6,12 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')]
 final class UploadMigrationController extends AbstractController
 {
-    #[Route('/admin/importer-photos', name: 'admin_import_uploads', methods: ['GET', 'POST'])]
+    #[Route('/importer-photos', name: 'import_uploads', methods: ['GET', 'POST'])]
     public function import(Request $request): Response
     {
         $source = $this->getParameter('kernel.project_dir').'/uploads-source';
