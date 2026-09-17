@@ -4,8 +4,6 @@ namespace App\Service;
 
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
-use Imagine\Image\Metadata\DefaultMetadataReader;
-use Imagine\Image\Metadata\ExifMetadataReader;
 
 class ImageOptimizer
 {
@@ -21,7 +19,7 @@ class ImageOptimizer
 
     public function resize(string $filename): void
     {
-        list($iwidth, $iheight) = getimagesize($filename);
+        list($iwidth, $iheight, $imageType) = getimagesize($filename);
         $ratio = $iwidth / $iheight;
         $width = self::MAX_WIDTH;
         $height = self::MAX_HEIGHT;
@@ -31,7 +29,11 @@ class ImageOptimizer
             $height = $width / $ratio;
         }
 
-        $exif = exif_read_data($filename);
+        $exif = [];
+        if (\function_exists('exif_read_data') && $imageType === IMAGETYPE_JPEG) {
+            // EXIF is optional: missing or unreadable metadata must not prevent uploads.
+            $exif = @\exif_read_data($filename) ?: [];
+        }
 
         $photo = $this->imagine->open($filename);
         $photo->resize(new Box($width, $height))->save($filename);
