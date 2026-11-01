@@ -16,7 +16,8 @@ class MediaService
         $page = $request->query->getInt('page', 1);
         $limit = 12;
 
-        $mediaQuery = $this->mediaRepository->findBy([], ['id' => 'DESC']);
+        $mediaQuery = $this->mediaRepository->createQueryBuilder('media')
+            ->orderBy('media.id', 'DESC');
 
         return $this->paginator->paginate($mediaQuery, $page, $limit);
     }

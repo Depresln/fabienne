@@ -16,8 +16,9 @@ class PostService
         $page = $request->query->getInt('page', 1);
         $limit = 6;
 
-        $mediaQuery = $this->postRepository->findBy([], ['createdAt' => 'DESC']);
+        $postQuery = $this->postRepository->createQueryBuilder('post')
+            ->orderBy('post.createdAt', 'DESC');
 
-        return $this->paginator->paginate($mediaQuery, $page, $limit);
+        return $this->paginator->paginate($postQuery, $page, $limit);
     }
 }
